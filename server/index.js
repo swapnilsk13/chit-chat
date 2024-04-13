@@ -26,7 +26,11 @@ mongoose
   .then(() => console.log("Mongodb connected Succesfully"))
   .catch((err) => console.log(err));
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://chit-chat-client-mu.vercel.app", // Set the origin to your client's URL
+  })
+);
 app.use(
   bodyParser.urlencoded({
     extended: true,
