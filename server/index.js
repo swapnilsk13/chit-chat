@@ -15,6 +15,9 @@ const app = express();
 const port = process.env.PORT || 8080; // Corrected from process.env.port
 const mongodbURI = process.env.MONGOOSE_URI;
 
+// Middleware
+app.use(cors()); // Use CORS middleware globally
+
 // Server setup
 const server = app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
@@ -29,24 +32,15 @@ mongoose
   .then(() => console.log("MongoDB connected successfully"))
   .catch((err) => console.log(err));
 
-// Middleware
-app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://chit-chat-client-mu.vercel.app"
-  );
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
 // Assign socket object to every request
 app.use(function (req, res, next) {
   req.io = socketIo;
   next();
 });
+
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Route handlers
 app.get("/", (req, res) => {
