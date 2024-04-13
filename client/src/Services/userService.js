@@ -12,15 +12,15 @@ export function useGetUsers() {
 
     const getUsers = () => {
         return fetch(
-            `${process.env.REACT_APP_API_URL}/users`,
-            requestOptions
+          `https://chit-chat-server.vercel.app/users`,
+          requestOptions
         )
-            .then(handleResponse)
-            .catch(() =>
-                enqueueSnackbar('Could not load Users', {
-                    variant: 'error',
-                })
-            );
+          .then(handleResponse)
+          .catch(() =>
+            enqueueSnackbar("Could not load Users", {
+              variant: "error",
+            })
+          );
     };
 
     return getUsers;

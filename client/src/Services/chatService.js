@@ -13,15 +13,15 @@ export function useGetGlobalMessages() {
 
     const getGlobalMessages = () => {
         return fetch(
-            `${process.env.REACT_APP_API_URL}/messages/globalMessages`,
-            requestOptions
+          `https://chit-chat-server.vercel.app/messages/globalMessages`,
+          requestOptions
         )
-            .then(handleResponse)
-            .catch(() =>
-                enqueueSnackbar('Could not load Global Chat', {
-                    variant: 'error',
-                })
-            );
+          .then(handleResponse)
+          .catch(() =>
+            enqueueSnackbar("Could not load Global Chat", {
+              variant: "error",
+            })
+          );
     };
 
     return getGlobalMessages;
@@ -40,16 +40,16 @@ export function useSendGlobalMessage() {
         };
 
         return fetch(
-            `${process.env.REACT_APP_API_URL}/messages/global`,
-            requestOptions
+          `https://chit-chat-server.vercel.app/messages/global`,
+          requestOptions
         )
-            .then(handleResponse)
-            .catch(err => {
-                console.log(err);
-                enqueueSnackbar('Could send message', {
-                    variant: 'error',
-                });
+          .then(handleResponse)
+          .catch((err) => {
+            console.log(err);
+            enqueueSnackbar("Could send message", {
+              variant: "error",
             });
+          });
     };
 
     return sendGlobalMessage;
@@ -66,15 +66,15 @@ export function useGetConversations() {
 
     const getConversations = () => {
         return fetch(
-            `${process.env.REACT_APP_API_URL}/messages/conversationList`,
-            requestOptions
+          `https://chit-chat-server.vercel.app/messages/conversationList`,
+          requestOptions
         )
-            .then(handleResponse)
-            .catch(() =>
-                enqueueSnackbar('Could not load chats', {
-                    variant: 'error',
-                })
-            );
+          .then(handleResponse)
+          .catch(() =>
+            enqueueSnackbar("Could not load chats", {
+              variant: "error",
+            })
+          );
     };
 
     return getConversations;
@@ -92,17 +92,15 @@ export function useGetConversationMessages() {
 
     const getConversationMessages = id => {
         return fetch(
-            `${
-                process.env.REACT_APP_API_URL
-            }/messages/conversationByUser/query?userId=${id}`,
-            requestOptions
+          `https://chit-chat-server.vercel.app/messages/conversationByUser/query?userId=${id}`,
+          requestOptions
         )
-            .then(handleResponse)
-            .catch(() =>
-                enqueueSnackbar('Could not load chats', {
-                    variant: 'error',
-                })
-            );
+          .then(handleResponse)
+          .catch(() =>
+            enqueueSnackbar("Could not load chats", {
+              variant: "error",
+            })
+          );
     };
 
     return getConversationMessages;
@@ -120,16 +118,16 @@ export function useSendConversationMessage() {
         };
 
         return fetch(
-            `${process.env.REACT_APP_API_URL}/messages/personal`,
-            requestOptions
+          `https://chit-chat-server.vercel.app/messages/personal`,
+          requestOptions
         )
-            .then(handleResponse)
-            .catch(err => {
-                console.log(err);
-                enqueueSnackbar('Could send message', {
-                    variant: 'error',
-                });
+          .then(handleResponse)
+          .catch((err) => {
+            console.log(err);
+            enqueueSnackbar("Could send message", {
+              variant: "error",
             });
+          });
     };
 
     return sendConversationMessage;

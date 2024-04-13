@@ -42,7 +42,7 @@ const Users = (props) => {
   }, [newUser]);
 
   useEffect(() => {
-    const socket = socketIOClient(process.env.REACT_APP_API_URL);
+    const socket = socketIOClient("https://chit-chat-server.vercel.app");
     socket.on("users", (data) => {
       setNewUser(data);
     });

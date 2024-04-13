@@ -104,7 +104,7 @@ const ChatBox = (props) => {
   }, [lastMessage, props.scope, props.conversationId]);
 
   useEffect(() => {
-    const socket = socketIOClient(process.env.REACT_APP_API_URL);
+    const socket = socketIOClient("https://chit-chat-server.vercel.app");
     socket.on("messages", (data) => setLastMessage(data));
     console.log({ lastMessage });
   }, []);

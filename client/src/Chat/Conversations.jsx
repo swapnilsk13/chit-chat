@@ -57,7 +57,7 @@ const Conversations = (props) => {
   }, [newConversation]);
 
   useEffect(() => {
-    let socket = socketIOClient(process.env.REACT_APP_API_URL);
+    let socket = socketIOClient("https://chit-chat-server.vercel.app");
     socket.on("messages", (data) => setNewConversation(data));
 
     return () => {
