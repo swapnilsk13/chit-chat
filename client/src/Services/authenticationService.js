@@ -26,20 +26,20 @@ export function useLogin() {
             body: JSON.stringify({ userName, password }),
         };
         return fetch(
-            `${process.env.REACT_APP_API_URL}/users/login`,
-            requestOptions
+          `https://chit-chat-server.vercel.app/users/login`,
+          requestOptions
         )
-            .then(handleResponse)
-            .then(user => {
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                currentUserSubject.next(user);
-                return user;
-            })
-            .catch(function() {
-                enqueueSnackbar('Failed to Login', {
-                    variant: 'error',
-                });
+          .then(handleResponse)
+          .then((user) => {
+            localStorage.setItem("currentUser", JSON.stringify(user));
+            currentUserSubject.next(user);
+            return user;
+          })
+          .catch(function () {
+            enqueueSnackbar("Failed to Login", {
+              variant: "error",
             });
+          });
     };
 
     return login;
@@ -57,27 +57,27 @@ export function useRegister() {
         };
 
         return fetch(
-            `${process.env.REACT_APP_API_URL}/users/signup`,
-            requestOptions
+          `https://chit-chat-server.vercel.app/users/signup`,
+          requestOptions
         )
-            .then(handleResponse)
-            .then(user => {
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                currentUserSubject.next(user);
+          .then(handleResponse)
+          .then((user) => {
+            localStorage.setItem("currentUser", JSON.stringify(user));
+            currentUserSubject.next(user);
 
-                return user;
-            })
-            .catch(function(response) {
-                if (response) {
-                    enqueueSnackbar(response, {
-                        variant: 'error',
-                    });
-                } else {
-                    enqueueSnackbar('Failed to Register', {
-                        variant: 'error',
-                    });
-                }
-            });
+            return user;
+          })
+          .catch(function (response) {
+            if (response) {
+              enqueueSnackbar(response, {
+                variant: "error",
+              });
+            } else {
+              enqueueSnackbar("Failed to Register", {
+                variant: "error",
+              });
+            }
+          });
     };
 
     return register;
